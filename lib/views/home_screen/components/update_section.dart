@@ -1,9 +1,13 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 
 class UpdateSection extends StatelessWidget {
   const UpdateSection({
-    Key? key,
-  }) : super(key: key);
+    super.key,required this.updates,
+  });
+
+  final List<String> updates;
 
   @override
   Widget build(BuildContext context) {
@@ -16,36 +20,46 @@ class UpdateSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Updates",
+                'Updates',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 18,
                 ),
               ),
               const Divider(),
-              Expanded(
+              if (updates.isEmpty) const Expanded(
+                child: Center(
+                  child: Text(
+                    'No Updates',
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
+                ),
+              ) else Expanded(
                 child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: updates.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) => Column(
                     children: [
                       Row(
                         mainAxisAlignment:
                         MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Expanded(
                             child: Text(
-                              "Global U.S. Stocks Are Now Live!",
-                              style: TextStyle(
+                              updates[index],
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 15),
+                                  fontSize: 15,),
                             ),
                           ),
-                          Text(
-                            "October 24, 2021",
+                          const SizedBox(width: 10),
+                          const Text(
+                            'October 24, 2021',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 15),
+                                fontSize: 15,),
                           ),
                         ],
                       ),

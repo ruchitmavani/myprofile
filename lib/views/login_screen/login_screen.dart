@@ -4,7 +4,7 @@ import 'package:myprofilr/local_storage.dart';
 import 'package:myprofilr/views/home_screen/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -28,16 +28,15 @@ class _LoginScreenState extends State<LoginScreen> {
         key: _formKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 18.0, right: 18, top: 20),
+            padding: const EdgeInsets.only(left: 18, right: 18, top: 20),
             child: Center(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
-                  Text(
-                    "Enter Your Name",
+                  const Text(
+                    'Enter Your Name',
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
                   ),
                   const SizedBox(
@@ -45,11 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'[a-zA-z]')),
+                      FilteringTextInputFormatter.allow(RegExp('[a-zA-z]')),
                     ],
                     controller: _name,
                     maxLength: 25,
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.done,
                     onFieldSubmitted: (value) {},
                     validator: (phone) {
@@ -66,17 +65,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if (_formKey.currentState?.validate() == true) {
                         sharedPrefs.userName = _name.text;
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Welcome ${_name.text}"),
-                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Welcome ${_name.text}'),
+                          ),
+                        );
                         Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
-                            ));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ),
+                        );
                       }
                     },
-                    child: Text("Log In"),
+                    child: const Text('Log In'),
                   ),
                 ],
               ),

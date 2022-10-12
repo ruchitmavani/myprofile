@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:myprofilr/local_storage.dart';
 import 'package:myprofilr/utils/mouse_drag_scroll.dart';
@@ -22,8 +24,8 @@ class MyApp extends StatelessWidget {
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
           ),
-          dividerTheme: const DividerThemeData(space: 20)),
-      home: sharedPrefs.isLoggedIn() ? HomeScreen() : LoginScreen(),
+          dividerTheme: const DividerThemeData(space: 20),),
+      home: sharedPrefs.isLoggedIn() ? const HomeScreen() : const LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

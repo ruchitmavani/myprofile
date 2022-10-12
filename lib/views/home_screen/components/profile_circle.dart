@@ -1,9 +1,11 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:myprofilr/utils/color_constants.dart';
 import 'package:myprofilr/views/home_screen/components/red_dot.dart';
 
 class ProfileCircle extends StatelessWidget {
-  const ProfileCircle({Key? key, required this.image}) : super(key: key);
+  const ProfileCircle({super.key, required this.image});
 
   final String image;
 
@@ -36,4 +38,3 @@ class ProfileCircle extends StatelessWidget {
     );
   }
 }
-
