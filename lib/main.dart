@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:myprofilr/local_storage.dart';
 import 'package:myprofilr/utils/mouse_drag_scroll.dart';
 import 'package:myprofilr/views/home_screen/home_screen.dart';
+import 'package:myprofilr/views/login_screen/login_screen.dart';
 
-void main() {
+Future<void> main() async {
+  await sharedPrefs.init();
   runApp(const MyApp());
 }
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.white,
           ),
           dividerTheme: const DividerThemeData(space: 20)),
-      home: const HomeScreen(),
+      home: sharedPrefs.isLoggedIn() ? HomeScreen() : LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
